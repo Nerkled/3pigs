@@ -10,7 +10,7 @@ defineProps<{
     <h3>
       You made it piglets!
       <a href="https://3pigs.bandcamp.com/album/when-pigs-fly" target="_blank" rel="noopener">M u s i c</a> +
-      <a href="https://www.instagram.com/3pigs.wav" target="_blank" rel="noopener">I n s t a</a>. What's next?
+      <a href="https://www.instagram.com/3pigs.wav" target="_blank" rel="noopener">I n s t a</a>.
     </h3>
   </div>
 </template>

@@ -4,14 +4,7 @@ import StoreItem from '../components/StoreItem.vue'
 
 <template>
   <main>
-    <StoreItem msg="   
-      (_)      
- _ __  _  __ _ 
-| '_ \| |/ _` |
-| |_) | | (_| |
-| .__/|_|\__, |
-| |       __/ |
-|_|      |___/ 
-    " />
+    <StoreItem msg="
+ " />
   </main>
 </template>
