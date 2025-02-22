@@ -1,27 +1,80 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue'
+
+const draggableWindow = ref<HTMLElement | null>(null);
+
+let isDragging = false;
+let offsetX = 0;
+let offsetY = 0;
+
+onMounted(() => {
+  const windowElement = draggableWindow.value;
+
+  if (windowElement) {
+    // Add event listeners for dragging
+    windowElement.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      offsetX = e.clientX - windowElement.offsetLeft;
+      offsetY = e.clientY - windowElement.offsetTop;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging && windowElement) {
+        windowElement.style.left = `${e.clientX - offsetX}px`;
+        windowElement.style.top = `${e.clientY - offsetY}px`;
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+  }
+});
 </script>
 
 <template>
-<div class="app-background">
-    <header>
-      <div class="header-background">
-      <div class="header-wrapper">
-        <HelloWorld msg="3 p i g s" />
+  <div ref="draggableWindow" class="window" style="width: auto; height: auto; position: absolute;">
+    <div class="title-bar">
+      <div class="title-bar-text">Again...</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close"></button>
       </div>
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/store">Store</RouterLink>
-        </nav>
+    </div>
+    <div class="window-body">
+      <div class="app-background">
+        <header>
+          <div class="header-background">
+            <div class="header-wrapper">
+              <HelloWorld msg="3 p i g s" />
+            </div>
+            <nav>
+              <RouterLink to="/">Home</RouterLink>
+              <RouterLink to="/about">About</RouterLink>
+              <RouterLink to="/store">Store</RouterLink>
+            </nav>
+          </div>
+        </header>
+        <RouterView />
       </div>
-    </header>
-  <RouterView />
-</div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
+
+.window {
+  position: absolute; /* Allow dragging */
+  top: 20px; /* Initial position */
+  left: 20px; /* Initial position */
+  background-color: white; /* Add background color for visibility */
+  border: 1px solid #ccc; /* Add border for visibility */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
