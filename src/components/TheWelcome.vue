@@ -1,49 +1,44 @@
 <script setup lang="ts">
-import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
+defineProps<{
+  msg?: string
+}>()
 
+const defaultMsg = 'Welcome to 3pigs!'
 </script>
 
 <template>
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
-    <template #heading>Shows</template>
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <ToolingIcon />
-    </template>
-    <template #heading>Gallery</template>
-
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <EcosystemIcon />
-    </template>
-    <template #heading>Games</template>
-
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <CommunityIcon />
-    </template>
-    <template #heading>Community</template>
-
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <SupportIcon />
-    </template>
-    <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
-  </WelcomeItem>
+  <div class="welcome">
+    <h1 class="pink">{{ msg || defaultMsg }}</h1>
+    <h3>You made it piglets! Watch out for the pig...</h3>
+  </div>
 </template>
+
+<style scoped>
+.welcome {
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  min-height: 100vh; /* Ensure pig has room to scroll */
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 2.6rem;
+  position: relative;
+  top: -10px;
+}
+
+.pink {
+  color: #ff69b4;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+@media (min-width: 1024px) {
+  .welcome {
+    text-align: left;
+  }
+}
+</style>

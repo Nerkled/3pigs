@@ -1,37 +1,35 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { RouterLink, RouterView } from 'vue-router';
+import { ref, onMounted } from 'vue'
+import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 
-const draggableWindow = ref<HTMLElement | null>(null);
+const draggableWindow = ref<HTMLElement | null>(null)
 
-let isDragging = false;
-let offsetX = 0;
-let offsetY = 0;
+let isDragging = false
+let offsetX = 0
+let offsetY = 0
 
 onMounted(() => {
-  const windowElement = draggableWindow.value;
-
+  const windowElement = draggableWindow.value
   if (windowElement) {
-    // Add event listeners for dragging
     windowElement.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      offsetX = e.clientX - windowElement.offsetLeft;
-      offsetY = e.clientY - windowElement.offsetTop;
-    });
+      isDragging = true
+      offsetX = e.clientX - windowElement.offsetLeft
+      offsetY = e.clientY - windowElement.offsetTop
+    })
 
     window.addEventListener('mousemove', (e) => {
       if (isDragging && windowElement) {
-        windowElement.style.left = `${e.clientX - offsetX}px`;
-        windowElement.style.top = `${e.clientY - offsetY}px`;
+        windowElement.style.left = `${e.clientX - offsetX}px`
+        windowElement.style.top = `${e.clientY - offsetY}px`
       }
-    });
+    })
 
     window.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
+      isDragging = false
+    })
   }
-});
+})
 </script>
 
 <template>
@@ -65,14 +63,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
 .window {
-  position: absolute; /* Allow dragging */
-  top: 20px; /* Initial position */
-  left: 20px; /* Initial position */
-  background-color: white; /* Add background color for visibility */
-  border: 1px solid #ccc; /* Add border for visibility */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -82,28 +79,20 @@ header {
 
 .app-background {
   background-image: url('@/assets/pigfield.jpg');
-  background-size: fill;
-  background-position: center;
-
-  background: linear-gradient(to top, #000000, #000000, #333333, #333333);
   background-size: cover;
+  background-position: center;
+  background: linear-gradient(to top, #000000, #000000, #333333, #333333);
   background-size: 100% 5px;
-
 }
 
 .header-background {
   background-image: url('@/assets/pigascii.png');
   background-size: cover;
   background-position: center;
-  background-repeat: repeat; /* Added to repeat the image */
+  background-repeat: repeat;
   padding: 4rem 0;
   text-align: center;
   position: relative;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
 }
 
 nav {
@@ -138,21 +127,10 @@ nav a:first-of-type {
     padding-right: calc(var(--section-gap) / 2);
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
   nav {
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }
