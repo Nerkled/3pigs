@@ -1,5 +1,9 @@
 # 3pigs
 
+Here is the website for 3pigs (shoegazey / elctronic metal band coming out of newpaltz). Myvision so far is a desktop style website that has a window/s and they are dynamic. Dynamic - they can be moved or stay still.
+
+My vision as of now is to populate the website with data in the index as well as the about page, i want it to look better right now as the sizes are different from page to page. 
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
